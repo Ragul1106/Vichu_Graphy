@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { requireAdmin } from "@/lib/supabase/admin-auth";
 
-export default function AdminDashboardPage() {
+export default async function AdminDashboardPage() {
+    await requireAdmin();
   return (
     <main className="min-h-screen bg-gray-950 p-8 text-white">
       <div className="mx-auto max-w-6xl">
