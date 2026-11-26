@@ -17,8 +17,8 @@ export default function Footer() {
         {/* BRAND INFORMATION */}
         <div>
           <Link href="/" className="footer-brand">
-            <span className="text-white">V</span>ichu
-            <span className="text-blue-500">G</span>raphy
+            <span className="brand-v">V</span>ichu
+            <span className="brand-g">G</span>raphy
           </Link>
 
           <p>

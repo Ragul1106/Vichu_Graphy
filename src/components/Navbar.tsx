@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { Camera, Menu } from "lucide-react";
 import WhatsAppLink from "@/components/WhatsAppLink";
@@ -18,15 +17,16 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <div className="nav-wrap">
-
         {/* BRAND LOGO */}
+
         <Link href="/" className="brand">
           <span className="brand-icon">
             <Camera size={21} />
           </span>
 
-          <span>
-            Vichu<span className="brand-accent">Graphy</span>
+          <span className="brand-name">
+            <span className="brand-v">V</span>ichu
+            <span className="brand-g">G</span>raphy
             <small>GIFTS · FRAMES · STORIES</small>
           </span>
         </Link>
@@ -61,7 +61,6 @@ export default function Navbar() {
             </nav>
           </details>
         </div>
-
       </div>
     </header>
   );

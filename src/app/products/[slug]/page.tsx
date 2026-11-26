@@ -1,5 +1,54 @@
-import type { Metadata } from "next";import Image from "next/image";import Link from "next/link";import { notFound } from "next/navigation";import { products } from "@/lib/data";import WhatsAppLink from "@/components/WhatsAppLink";
-type Props={params:Promise<{slug:string}>};
-export function generateStaticParams(){return products.map(p=>({slug:p.slug}));}
-export async function generateMetadata({params}:Props):Promise<Metadata>{const {slug}=await params;const p=products.find(x=>x.slug===slug);return {title:p?.name??"Product not found",description:p?.description};}
-export default async function ProductPage({params}:Props){const {slug}=await params;const p=products.find(x=>x.slug===slug);if(!p)notFound();const message=`Hello VichuGraphy! I am interested in ${p.name}. Listed price: ₹${p.price}. ${p.description} Please share designs, sizes and customization details.`;return <section className="product-detail page-section"><div className="detail-image"><Image src={p.image} alt={p.name} fill priority sizes="(max-width: 800px) 100vw, 50vw"/></div><div className="detail-copy"><span className="eyebrow">{p.category}</span><h1>{p.name}</h1><p className="detail-price">From ₹{p.price.toLocaleString("en-IN")}</p><p>{p.description}</p><h3>Details</h3><ul>{p.details.map(d=><li key={d}>{d}</li>)}</ul><WhatsAppLink message={message} label="Enquire about this product"/><p className="fine-print">The displayed price is indicative. Final pricing may depend on size, material and customization.</p><Link className="text-link" href="/gifts">← Back to collections</Link></div></section>}
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { products } from "@/lib/data";
+import WhatsAppLink from "@/components/WhatsAppLink";
+type Props = { params: Promise<{ slug: string }> };
+export function generateStaticParams() {
+  return products.map((p) => ({ slug: p.slug }));
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const p = products.find((x) => x.slug === slug);
+  return { title: p?.name ?? "Product not found", description: p?.description };
+}
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params;
+  const p = products.find((x) => x.slug === slug);
+  if (!p) notFound();
+  const message = `Hello VichuGraphy! I am interested in ${p.name}. Listed price: ₹${p.price}. ${p.description} Please share designs, sizes and customization details.`;
+  return (
+    <section className="product-detail page-section">
+      <div className="detail-image">
+        <Image
+          src={p.image}
+          alt={p.name}
+          fill
+          priority
+          sizes="(max-width: 800px) 100vw, 50vw"
+        />
+      </div>
+      <div className="detail-copy">
+        <span className="eyebrow">{p.category}</span>
+        <h1>{p.name}</h1>
+        <p className="detail-price">From ₹{p.price.toLocaleString("en-IN")}</p>
+        <p>{p.description}</p>
+        <h3>Details</h3>
+        <ul>
+          {p.details.map((d) => (
+            <li key={d}>{d}</li>
+          ))}
+        </ul>
+        <WhatsAppLink message={message} label="Enquire about this product" />
+        <p className="fine-print">
+          The displayed price is indicative. Final pricing may depend on size,
+          material and customization.
+        </p>
+        <Link className="text-link" href="/gifts">
+          ← Back to collections
+        </Link>
+      </div>
+    </section>
+  );
+}

@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { collections } from "@/lib/data";
@@ -16,7 +17,9 @@ export default async function CollectionPage({
 }) {
   const { slug } = await params;
 
-  const collection = collections.find((item) => item.slug === slug);
+  const collection = collections.find(
+    (item) => item.slug === slug
+  );
 
   if (!collection) {
     notFound();
@@ -48,26 +51,32 @@ export default async function CollectionPage({
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {collection.items.map((item, index) => {
-          const message = `Hello VichuGraphy! I am interested in ${item}. Please share the price and available designs.`;
+          const message = `Hello VichuGraphy! I am interested in ${item.name}. Please share the price and available designs.`;
 
           const whatsappUrl = `https://wa.me/919092223815?text=${encodeURIComponent(message)}`;
 
           return (
             <article
-              key={item}
+              key={item.slug}
               className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 font-semibold text-green-800">
                 {(index + 1).toString().padStart(2, "0")}
               </div>
 
-              <h2 className="mb-4 text-xl font-semibold">{item}</h2>
+              <h2 className="mb-3 text-xl font-semibold">
+                {item.name}
+              </h2>
+
+              <p className="mb-5 text-sm leading-relaxed text-gray-600">
+                {item.description}
+              </p>
 
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-green-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-800"
+                className="inline-flex items-center gap-2 rounded-full bg-green-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-green-800"
               >
                 <MessageCircle size={17} />
                 Enquire Now
