@@ -1,14 +1,10 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { collections } from "@/lib/data";
 import { ArrowLeft, MessageCircle } from "lucide-react";
+import { getCollectionBySlug } from "@/lib/supabase/data";
 
-export function generateStaticParams() {
-  return collections.map((collection) => ({
-    slug: collection.slug,
-  }));
-}
+export const revalidate = 60;
 
 export default async function CollectionPage({
   params,
@@ -17,13 +13,9 @@ export default async function CollectionPage({
 }) {
   const { slug } = await params;
 
-  const collection = collections.find(
-    (item) => item.slug === slug
-  );
+  const collection = await getCollectionBySlug(slug);
 
-  if (!collection) {
-    notFound();
-  }
+  if (!collection) notFound();
 
   return (
     <section className="mx-auto min-h-screen max-w-7xl px-5 py-16 sm:px-8">
@@ -57,7 +49,7 @@ export default async function CollectionPage({
 
           return (
             <article
-              key={item.slug}
+              key={item.id}
               className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 font-semibold text-green-800">
@@ -72,19 +64,34 @@ export default async function CollectionPage({
                 {item.description}
               </p>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-green-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-green-800"
-              >
-                <MessageCircle size={17} />
-                Enquire Now
-              </a>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={`/items/${item.slug}`}
+                  className="inline-flex items-center rounded-full border border-green-700 px-5 py-2.5 text-sm font-medium text-green-700 transition hover:bg-green-50"
+                >
+                  View Details
+                </Link>
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-green-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-green-800"
+                >
+                  <MessageCircle size={17} />
+                  Enquire Now
+                </a>
+              </div>
             </article>
           );
         })}
       </div>
+
+      {collection.items.length === 0 && (
+        <p className="py-16 text-center text-gray-500">
+          No products are currently available in this collection.
+        </p>
+      )}
     </section>
   );
 }
