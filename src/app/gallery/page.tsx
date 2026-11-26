@@ -1,0 +1,3 @@
+import type { Metadata } from "next";import Image from "next/image";import { portfolio } from "@/lib/data";
+export const metadata:Metadata={title:"Gallery"};
+export default function Gallery(){return <section className="page-section"><div className="page-heading"><span className="eyebrow">A LITTLE INSPIRATION</span><h1>Our gallery</h1><p>A selection of visual inspiration. Ask us about creating something similar for you.</p></div><div className="gallery-grid">{[...portfolio,...portfolio].map((p,i)=><div className="gallery-item" key={`${p.title}-${i}`}><Image src={p.image} alt={p.title} fill sizes="(max-width: 700px) 50vw, 33vw"/><span>{p.title}</span></div>)}</div></section>}
