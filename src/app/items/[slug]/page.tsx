@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import { getQuoteItemBySlug } from "@/lib/supabase/data";
+import ItemImageGallery from "@/components/ItemImageGallery";
 
 export const revalidate = 60;
 
@@ -35,23 +35,9 @@ export default async function ItemDetailPage({
         </Link>
 
         <div className="grid items-center gap-10 md:grid-cols-2">
-          {/* ITEM IMAGE */}
-          <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
-            {item.image ? (
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                unoptimized
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center text-gray-400">
-                No image available
-              </div>
-            )}
+          {/* ITEM IMAGE GALLERY */}
+          <div>
+            <ItemImageGallery images={item.gallery} name={item.name} />
           </div>
 
           {/* ITEM DETAILS */}

@@ -5,9 +5,11 @@ export type Product = {
   price: number;
   description: string;
   image: string;
+  images?: string[];
   tag?: string;
   details: string[];
 };
+
 export const products: Product[] = [
   {
     slug: "classic-photo-frame",
@@ -17,6 +19,11 @@ export const products: Product[] = [
     description: "A timeless frame for your favourite memory.",
     image:
       "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=75",
+    ],
     tag: "Popular",
     details: [
       "Multiple size options",
@@ -32,6 +39,11 @@ export const products: Product[] = [
     description: "Keep your special moments together in a beautiful album.",
     image:
       "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=85",
+    ],
     tag: "Bestseller",
     details: [
       "Custom cover design",
@@ -47,6 +59,11 @@ export const products: Product[] = [
     description: "A thoughtful everyday gift made personal.",
     image:
       "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=900&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85",
+    ],
     details: [
       "Custom photo or text",
       "Ceramic mug",
@@ -61,6 +78,11 @@ export const products: Product[] = [
     description: "Bring several favourite moments together on one wall.",
     image:
       "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+    ],
     details: [
       "Multi-photo layout",
       "Custom arrangement",
@@ -75,6 +97,11 @@ export const products: Product[] = [
     description: "A curated box for birthdays, anniversaries and surprises.",
     image:
       "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=900&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+    ],
     tag: "New",
     details: [
       "Personalized message",
@@ -90,7 +117,16 @@ export const products: Product[] = [
     description: "A premium album designed around your wedding story.",
     image:
       "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85",
-    details: ["Custom layouts", "Premium paper options", "Personalized cover"],
+    images: [
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85",
+    ],
+    details: [
+      "Custom layouts",
+      "Premium paper options",
+      "Personalized cover",
+    ],
   },
 ];
 
@@ -138,6 +174,7 @@ export type CollectionItem = {
   name: string;
   description: string;
   image: string;
+  images?: string[];
 };
 
 export type Collection = {

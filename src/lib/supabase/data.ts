@@ -5,7 +5,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error(
-    "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"
+    "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
   );
 }
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -83,7 +83,13 @@ function mapProduct(row: ProductRow): Product {
     price: Number(row.price ?? 0),
     pricingType: row.pricing_type,
     image: row.image_url ?? "",
-    gallery: row.gallery_urls ?? [],
+    gallery: [
+      ...new Set(
+        [row.image_url, ...(row.gallery_urls ?? [])].filter(
+          (url): url is string => Boolean(url),
+        ),
+      ),
+    ],
     tag: row.tag,
     details,
     collectionId: row.collection_id,

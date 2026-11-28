@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Camera, Menu } from "lucide-react";
+import Image from "next/image";
+import { Menu } from "lucide-react";
 import WhatsAppLink from "@/components/WhatsAppLink";
 
 const links = [
@@ -20,9 +21,14 @@ export default function Navbar() {
         {/* BRAND LOGO */}
 
         <Link href="/" className="brand">
-          <span className="brand-icon">
-            <Camera size={21} />
-          </span>
+          <Image
+            src="/logo.png"
+            alt="VichuGraphy Logo"
+            width={180}
+            height={65}
+            priority
+            className=" brand-logo "
+          />
 
           <span className="brand-name">
             <span className="brand-v">V</span>ichu

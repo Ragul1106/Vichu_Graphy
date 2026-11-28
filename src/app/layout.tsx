@@ -4,12 +4,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 export const metadata: Metadata = {
-  title: {
-    default: "VichuGraphy | Gifts, Frames & Photography",
-    template: "%s | VichuGraphy",
-  },
+  title: "VichuGraphy | Gifts, Frames & Stories",
   description:
-    "Explore personalized gifts, photo frames, albums, photography and videography by VichuGraphy.",
+    "Discover personalised gifts, photo frames, event photography, flex designs and invitations at VichuGraphy.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 export default function RootLayout({
   children,
